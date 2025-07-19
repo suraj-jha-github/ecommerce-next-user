@@ -21,11 +21,27 @@ const CategoryPage = async ({ params, searchParams }: { params: Params, searchPa
     const sizes = await getSizes();
     const colors = await getColors();
     const category = await getCategory(categoryId)
+    
+    if (!category) {
+        return (
+            <div className="bg-white">
+                <Container>
+                    <div className="px-4 py-10 sm:px-6 lg:px-8">
+                        <div className="text-center">
+                            <h1 className="text-2xl font-bold text-gray-900">Category not found</h1>
+                            <p className="mt-2 text-gray-600">The category you're looking for doesn't exist.</p>
+                        </div>
+                    </div>
+                </Container>
+            </div>
+        );
+    }
+    
     console.log(category);
     return ( 
         <div className="bg-white">
             <Container>
-                <Billboard data={category?.billboard} />
+                {category?.billboard && <Billboard data={category.billboard} />}
                 <div className="px-4 pb-24 sm:px-6 lg:px-8">
                     <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
                         {/*Add Mobile Filters*/}
