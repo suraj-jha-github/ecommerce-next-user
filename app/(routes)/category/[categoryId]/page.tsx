@@ -29,7 +29,7 @@ const CategoryPage = async ({ params, searchParams }: { params: Params, searchPa
                     <div className="px-4 py-10 sm:px-6 lg:px-8">
                         <div className="text-center">
                             <h1 className="text-2xl font-bold text-gray-900">Category not found</h1>
-                            <p className="mt-2 text-gray-600">The category you're looking for doesn't exist.</p>
+                            <p className="mt-2 text-gray-600">The category you&apos;re looking for doesn&apos;t exist.</p>
                         </div>
                     </div>
                 </Container>
