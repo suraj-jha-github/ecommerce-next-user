@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Truck, Package, CheckCircle, Clock, XCircle } from "lucide-react";
 import OrderTracking from "./order-tracking";
+import Image from "next/image";
 
 interface OrderCardProps {
     data: Order;
@@ -79,10 +80,11 @@ const OrderCard: React.FC<OrderCardProps> = ({ data }) => {
                             <div className="flex items-center gap-3">
                                 <div className="w-12 h-12 bg-gray-100 rounded-md flex items-center justify-center">
                                     {item.product.images?.[0]?.url ? (
-                                        <img 
+                                        <Image 
                                             src={item.product.images[0].url} 
                                             alt={item.product.name}
-                                            className="w-full h-full object-cover rounded-md"
+                                            fill
+                                            className="object-cover rounded-md"
                                         />
                                     ) : (
                                         <span className="text-gray-400 text-xs">No Image</span>

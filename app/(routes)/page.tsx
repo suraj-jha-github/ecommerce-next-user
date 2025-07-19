@@ -3,12 +3,26 @@ import Billboard from "@/components/billboard";
 import getHomeBillboard from "@/actions/get-home-billboard";
 import getProducts from "@/actions/get-products";
 import ProductList from "@/components/product-list";
+import { Product } from "@/types";
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 const HomePage = async () => {
-    const billboard = await getHomeBillboard();
-    const products = await getProducts({ isFeatured: true })
+    let billboard = null;
+    let products: Product[] = [];
+    
+    try {
+        billboard = await getHomeBillboard();
+    } catch (error) {
+        console.error('Error fetching billboard:', error);
+    }
+    
+    try {
+        products = await getProducts({ isFeatured: true });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+    }
     
     return (
         <Container>

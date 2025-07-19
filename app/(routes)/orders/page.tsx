@@ -1,9 +1,9 @@
 import Container from "@/components/ui/container";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
 import OrderList from "./components/order-list";
 import getOrders from "@/actions/get-orders";
+import { Order } from "@/types";
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 const OrdersPage = async () => {
@@ -11,7 +11,12 @@ const OrdersPage = async () => {
     // In a real app, this would come from your authentication system
     const userId = "demo_user_123"; // This should come from your auth system
     
-    const orders = await getOrders(userId);
+    let orders: Order[] = [];
+    try {
+        orders = await getOrders(userId);
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+    }
 
     return (
         <Container>
